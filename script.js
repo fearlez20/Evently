@@ -213,52 +213,6 @@ function openEditEvent(eventId) {
     }
 }
 
-function getClosestEventButton(element) {
-    let currentElement = element;
-
-    while (currentElement) {
-        if (currentElement.classList && currentElement.classList.contains('editEventBtn')) {
-            return currentElement;
-        }
-
-        currentElement = currentElement.parentElement;
-    }
-
-    return null;
-}
-
-function getClosestEventCard(element) {
-    let currentElement = element;
-
-    while (currentElement) {
-        if (currentElement.classList && currentElement.classList.contains('event-card')) {
-            return currentElement;
-        }
-
-        currentElement = currentElement.parentElement;
-    }
-
-    return null;
-}
-
-function handleDocumentClick(event) {
-    const editButton = getClosestEventButton(event.target);
-
-    if (!editButton) {
-        return;
-    }
-
-    const eventCard = getClosestEventCard(editButton);
-
-    if (!eventCard) {
-        return;
-    }
-
-    openEditEvent(eventCard.dataset.eventId || '');
-}
-
-document.addEventListener('click', handleDocumentClick);
-
 renderDashboardEvents();
 renderManageEvents();
 renderScheduleEvents();
@@ -379,13 +333,13 @@ function handleDeleteEventClick() {
 }
 
 function handleEditEventButtonClick(event) {
-    const editButton = getClosestEventButton(event.target);
+    const editButton = event.target.closest('.editEventBtn');
 
     if (!editButton) {
         return;
     }
 
-    const eventCard = getClosestEventCard(editButton);
+    const eventCard = editButton.closest('.event-card');
 
     if (!eventCard) {
         return;
