@@ -3,65 +3,38 @@ const openBtn = document.getElementById('openModalBtn');
 const closeBtn = document.getElementById('closeModalBtn');
 const menuBtn = document.getElementById('menuToggle');
 const sideBar = document.getElementById('sidebar');
-const form = document.getElementById('bookingForm');
+const bookingForm = document.getElementById('bookingForm');
 const editEventForm = document.getElementById('editEventForm');
+const eventTitleInput = document.getElementById('eventTitle');
+const eventDateInput = document.getElementById('eventDate');
+const venueSelect = document.getElementById('venue');
 const eventNameInput = document.getElementById('eventName');
 const eventTimeInput = document.getElementById('eventTime');
 const eventVenueInput = document.getElementById('eventVenue');
 const deleteEventBtn = document.getElementById('deleteEventBtn');
 const dashboardGrid = document.querySelector('.dashboard-grid');
-const scheduleList = document.querySelector('.schedule-list');
+const scheduleBody = document.querySelector('.schedule-body');
 
 const eventStorageKey = 'eventlyEvents';
-const defaultEvents = [
-];
-
-let activeEventId = null;
-
-function openModal() {
-    if (modal) {
-        modal.classList.add('active');
-    }
-}
-
-function closeModal() {
-    if (modal) {
-        modal.classList.remove('active');
-    }
-}
-
-function compareEventTimes(firstEvent, secondEvent) {
-    return new Date(firstEvent.dateTime) - new Date(secondEvent.dateTime);
-}
+let activeEventId = '';
 
 function getEvents() {
-    const savedEvents = localStorage.getItem(eventStorageKey);
-
-    if (!savedEvents) {
-        return defaultEvents.slice();
-    }
-
     try {
-        const parsedEvents = JSON.parse(savedEvents);
-
-        if (Array.isArray(parsedEvents)) {
-            return parsedEvents;
-        }
-    } catch (error) {
-        return defaultEvents.slice();
+        const savedEvents = localStorage.getItem(eventStorageKey);
+        return savedEvents ? JSON.parse(savedEvents) : [];
+    } catch {
+        return [];
     }
-
-    return defaultEvents.slice();
 }
 
 function saveEvents(events) {
     localStorage.setItem(eventStorageKey, JSON.stringify(events));
 }
 
-function getSortedEvents() {
-    const events = getEvents().slice();
-    events.sort(compareEventTimes);
-    return events;
+function sortedEvents() {
+    return getEvents().slice().sort(function (first, second) {
+        return new Date(first.dateTime) - new Date(second.dateTime);
+    });
 }
 
 function formatEventTime(value) {
@@ -69,9 +42,9 @@ function formatEventTime(value) {
         return '';
     }
 
-    const dateTime = new Date(value);
+    const date = new Date(value);
 
-    if (Number.isNaN(dateTime.getTime())) {
+    if (Number.isNaN(date.getTime())) {
         return value;
     }
 
@@ -81,90 +54,70 @@ function formatEventTime(value) {
         year: 'numeric',
         hour: 'numeric',
         minute: '2-digit',
-    }).format(dateTime);
+    }).format(date);
 }
 
-function renderEventCard(event, showEditButton) {
-    let html = '<div class="event-card" data-event-id="' + event.id + '">';
-    html += '<h3>' + event.title + '</h3>';
-    html += '<div class="event-meta">';
-    html += '<span>📅 ' + formatEventTime(event.dateTime) + '</span>';
-    html += '<span>📍 ' + event.venue + '</span>';
-    html += '</div>';
-
-    if (showEditButton) {
-        html += '<button type="button" class="btn-primary small-btn editEventBtn">Edit Details</button>';
+function showModal() {
+    if (modal) {
+        modal.classList.add('active');
     }
-
-    html += '</div>';
-    return html;
 }
 
-function renderDashboardEvents() {
-    if (!dashboardGrid || !openBtn) {
+function hideModal() {
+    if (modal) {
+        modal.classList.remove('active');
+    }
+}
+
+function renderCards(events, showEditButton) {
+    return events.map(function (event) {
+        return '<div class="event-card" data-event-id="' + event.id + '">' +
+            '<h3>' + event.title + '</h3>' +
+            '<div class="event-meta">' +
+            '<span>📅 ' + formatEventTime(event.dateTime) + '</span>' +
+            '<span>📍 ' + event.venue + '</span>' +
+            '</div>' +
+            (showEditButton ? '<button type="button" class="btn-primary small-btn editEventBtn">Edit Details</button>' : '') +
+            '</div>';
+    }).join('');
+}
+
+function renderPage() {
+    const events = sortedEvents();
+
+    if (scheduleBody) {
+        scheduleBody.innerHTML = events.map(function (event) {
+            return '<div class="schedule-row">' +
+                '<span class="schedule-cell">' + event.title + '</span>' +
+                '<span class="schedule-cell">' + event.venue + '</span>' +
+                '<span class="schedule-cell">' + formatEventTime(event.dateTime) + '</span>' +
+                '</div>';
+        }).join('');
         return;
     }
 
-    const dashboardEvents = getSortedEvents().slice(0, 4);
-    let html = '';
-
-    for (let index = 0; index < dashboardEvents.length; index += 1) {
-        html += renderEventCard(dashboardEvents[index], false);
+    if (!dashboardGrid) {
+        return;
     }
 
-    dashboardGrid.innerHTML = html;
+    if (editEventForm) {
+        dashboardGrid.innerHTML = renderCards(events, true);
+        return;
+    }
+
+    if (openBtn) {
+        dashboardGrid.innerHTML = renderCards(events.slice(0, 4), false);
+    }
 }
 
-function renderManageEvents() {
-    if (!dashboardGrid || !editEventForm) {
-        return;
-    }
-
-    const events = getSortedEvents();
-    let html = '';
-
-    for (let index = 0; index < events.length; index += 1) {
-        html += renderEventCard(events[index], true);
-    }
-
-    dashboardGrid.innerHTML = html;
-}
-
-function renderScheduleEvents() {
-    if (!scheduleList) {
-        return;
-    }
-
-    const events = getSortedEvents();
-    const scheduleBody = document.querySelector('.schedule-body');
-
-    if (!scheduleBody) {
-        return;
-    }
-
-    let html = '';
-
-    for (let index = 0; index < events.length; index += 1) {
-        html += '<div class="schedule-row">';
-        html += '<span class="schedule-cell">' + events[index].title + '</span>';
-        html += '<span class="schedule-cell">' + events[index].venue + '</span>';
-        html += '<span class="schedule-cell">' + formatEventTime(events[index].dateTime) + '</span>';
-        html += '</div>';
-    }
-
-    scheduleBody.innerHTML = html;
+function findEventById(eventId) {
+    return getEvents().find(function (event) {
+        return event.id === eventId;
+    });
 }
 
 function openEditEvent(eventId) {
-    const events = getEvents();
-    let eventData = null;
-
-    for (let index = 0; index < events.length; index += 1) {
-        if (events[index].id === eventId) {
-            eventData = events[index];
-            break;
-        }
-    }
+    const eventData = findEventById(eventId);
 
     if (!eventData) {
         return;
@@ -184,131 +137,110 @@ function openEditEvent(eventId) {
         eventVenueInput.value = eventData.venue;
     }
 
-    if (modal) {
-        modal.classList.add('active');
-    }
+    showModal();
 }
 
-renderDashboardEvents();
-renderManageEvents();
-renderScheduleEvents();
-
-function handleOpenButtonClick() {
-    openModal();
-}
-
-function handleCloseButtonClick() {
-    closeModal();
-}
-
-function handleWindowClick(event) {
-    if (event.target === modal) {
-        closeModal();
-    }
-}
-
-function handleMenuButtonClick() {
-    sideBar.classList.toggle('active');
-}
-
-function handleBookingFormSubmit(event) {
-    event.preventDefault();
-
-    const eventTitle = document.getElementById('eventTitle');
-    const eventDate = document.getElementById('eventDate');
-    const venue = document.getElementById('venue');
-
-    if (!eventTitle || !eventDate || !venue) {
-        return;
-    }
-
-    const title = eventTitle.value.trim();
-    const dateTime = eventDate.value;
-    const venueName = venue.value;
-
-    if (!title || !dateTime) {
-        return;
-    }
-
+function updateActiveEvent(removeEvent) {
     const events = getEvents();
 
-    events.push({
-        id: String(Date.now()),
-        title: title,
-        dateTime: dateTime,
-        venue: venueName,
-    });
+    if (removeEvent) {
+        saveEvents(events.filter(function (event) {
+            return event.id !== activeEventId;
+        }));
+    } else {
+        saveEvents(events.map(function (event) {
+            if (event.id !== activeEventId) {
+                return event;
+            }
 
-    saveEvents(events);
+            return {
+                id: event.id,
+                title: eventNameInput.value.trim(),
+                dateTime: eventTimeInput.value,
+                venue: eventVenueInput.value.trim(),
+            };
+        }));
+    }
 
-    renderDashboardEvents();
-    renderManageEvents();
-    renderScheduleEvents();
+    renderPage();
+    hideModal();
 
-    closeModal();
-    form.reset();
+    if (editEventForm) {
+        editEventForm.reset();
+    }
+
+    activeEventId = '';
 }
 
-function handleEditEventFormSubmit(event) {
-    event.preventDefault();
+if (openBtn) {
+    openBtn.addEventListener('click', showModal);
+}
 
-    if (activeEventId && eventNameInput && eventTimeInput && eventVenueInput) {
-        const eventName = eventNameInput.value.trim();
-        const eventTime = eventTimeInput.value;
-        const eventVenue = eventVenueInput.value.trim();
+if (closeBtn) {
+    closeBtn.addEventListener('click', hideModal);
+}
+
+if (modal) {
+    window.addEventListener('click', function (event) {
+        if (event.target === modal) {
+            hideModal();
+        }
+    });
+}
+
+if (menuBtn && sideBar) {
+    menuBtn.addEventListener('click', function () {
+        sideBar.classList.toggle('active');
+    });
+}
+
+if (bookingForm) {
+    bookingForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const title = eventTitleInput.value.trim();
+        const dateTime = eventDateInput.value;
+        const venue = venueSelect.value;
+
+        if (!title || !dateTime) {
+            return;
+        }
 
         const events = getEvents();
-        const updatedEvents = [];
 
-        for (let index = 0; index < events.length; index += 1) {
-            if (events[index].id === activeEventId) {
-                updatedEvents.push({
-                    id: events[index].id,
-                    title: eventName,
-                    dateTime: eventTime,
-                    venue: eventVenue,
-                });
-            } else {
-                updatedEvents.push(events[index]);
-            }
-        }
+        events.push({
+            id: String(Date.now()),
+            title: title,
+            dateTime: dateTime,
+            venue: venue,
+        });
 
-        saveEvents(updatedEvents);
-        renderDashboardEvents();
-        renderManageEvents();
-        renderScheduleEvents();
-    }
-
-    closeModal();
-    editEventForm.reset();
-    activeEventId = null;
+        saveEvents(events);
+        renderPage();
+        hideModal();
+        bookingForm.reset();
+    });
 }
 
-function handleDeleteEventClick() {
-    if (!activeEventId) {
-        return;
-    }
+if (editEventForm) {
+    editEventForm.addEventListener('submit', function (event) {
+        event.preventDefault();
 
-    const events = getEvents();
-    const remainingEvents = [];
-
-    for (let index = 0; index < events.length; index += 1) {
-        if (events[index].id !== activeEventId) {
-            remainingEvents.push(events[index]);
+        if (activeEventId) {
+            updateActiveEvent(false);
         }
-    }
-
-    saveEvents(remainingEvents);
-    renderDashboardEvents();
-    renderManageEvents();
-    renderScheduleEvents();
-
-    closeModal();
-    editEventForm.reset();
-    activeEventId = null;
+    });
 }
 
-function handleEditEventButtonClick(event) {
+if (deleteEventBtn) {
+    deleteEventBtn.addEventListener('click', function () {
+        if (activeEventId) {
+            updateActiveEvent(true);
+        }
+    });
+}
+
+document.addEventListener('click', function (event) {
     const editButton = event.target.closest('.editEventBtn');
 
     if (!editButton) {
@@ -317,39 +249,9 @@ function handleEditEventButtonClick(event) {
 
     const eventCard = editButton.closest('.event-card');
 
-    if (!eventCard) {
-        return;
+    if (eventCard) {
+        openEditEvent(eventCard.dataset.eventId || '');
     }
+});
 
-    openEditEvent(eventCard.dataset.eventId || '');
-}
-
-if (openBtn) {
-    openBtn.addEventListener('click', handleOpenButtonClick);
-}
-
-if (closeBtn) {
-    closeBtn.addEventListener('click', handleCloseButtonClick);
-}
-
-if (modal) {
-    window.addEventListener('click', handleWindowClick);
-}
-
-if (menuBtn && sideBar) {
-    menuBtn.addEventListener('click', handleMenuButtonClick);
-}
-
-if (form) {
-    form.addEventListener('submit', handleBookingFormSubmit);
-}
-
-if (editEventForm) {
-    editEventForm.addEventListener('submit', handleEditEventFormSubmit);
-}
-
-if (deleteEventBtn) {
-    deleteEventBtn.addEventListener('click', handleDeleteEventClick);
-}
-
-document.addEventListener('click', handleEditEventButtonClick);
+renderPage();
