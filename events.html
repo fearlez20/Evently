@@ -24,15 +24,15 @@
         <p class="subtitle">This page is for checking and editing the events we already added.</p>
 
         <div class="dashboard-grid">
-            <div class="event-card">
+            <div class="event-card" data-event-name="Alumni Networking Night" data-event-time="2026-08-19T18:00">
                 <h3>Alumni Networking Night</h3>
-                <div class="event-meta"><span>📅 Aug 19, 2026</span></div>
-                <button class="btn-primary small-btn" id="editEventBtn">Edit Details</button>
+                <div class="event-meta"><span>📅 Aug 19, 2026, 6:00 PM</span></div>
+                <button type="button" class="btn-primary small-btn editEventBtn">Edit Details</button>
             </div>
-            <div class="event-card">
+            <div class="event-card" data-event-name="Matriculation Art Exhibition" data-event-time="2026-09-05T10:30">
                 <h3>Matriculation Art Exhibition</h3>
-                <div class="event-meta"><span>📅 Sept 05, 2026</span></div>
-                <button class="btn-primary small-btn" id="editEventBtn">Edit Details</button>
+                <div class="event-meta"><span>📅 Sept 05, 2026, 10:30 AM</span></div>
+                <button type="button" class="btn-primary small-btn editEventBtn">Edit Details</button>
             </div>
         </div>
     </main>
@@ -47,12 +47,12 @@
                     <label for="eventName">Event Name</label>
                     <input type="text" id="eventName" name="eventName" required>
                     <label for="eventTime">Event Time</label>
-                    <input type="datetime" id="eventTime" name="eventTime" required>
+                    <input type="datetime-local" id="eventTime" name="eventTime" required>
                 </div>
+                <button type="submit" class="btn-primary full-btn">Save</button>
             </form>
         </div>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
