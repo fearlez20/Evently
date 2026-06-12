@@ -16,25 +16,25 @@ const defaultEvents = [
         id: 'tech-summit-2026',
         title: 'Tech Summit 2026',
         dateTime: '2026-06-15T09:00',
-        venue: 'Hall A',
+        venue: 'Auditorium',
     },
     {
         id: 'hackathon-2026',
         title: 'Inter-University Hackathon',
         dateTime: '2026-07-02T12:00',
-        venue: 'Lab 3',
+        venue: 'Software Lab',
     },
     {
-        id: 'alumni-night',
-        title: 'Alumni Networking Night',
+        id: 'Dinner-night',
+        title: 'Dinner Night',
         dateTime: '2026-08-19T18:00',
-        venue: 'Auditorium Center',
+        venue: 'Auditorium',
     },
     {
-        id: 'art-exhibition',
-        title: 'Matriculation Art Exhibition',
+        id: 'Art-exhibition',
+        title: 'Art Exhibition',
         dateTime: '2026-09-05T10:30',
-        venue: 'Conference Room B',
+        venue: 'New Lecture Theater',
     },
 ];
 
@@ -77,7 +77,7 @@ function getEvents() {
 }
 
 function saveEvents(events) {
-    localStorage.setItem(eventStorageKey, JSON.stringify(events));
+    
 }
 
 function getSortedEvents() {
@@ -302,7 +302,6 @@ function handleBookingFormSubmit(event) {
     renderManageEvents();
     renderScheduleEvents();
 
-    alert('Form submitted successfully!');
     closeModal();
     form.reset();
 }
