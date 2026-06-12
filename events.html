@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evently - Manage Events</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+
+    <button class="menu-toggle" id="menuToggle">☰ Menu</button>
+
+    <nav class="sidebar" id="sidebar">
+        <div class="logo">📅 Evently</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Dashboard</a></li>
+            <li><a href="events.html" class="active">Manage Events</a></li>
+            <li><a href="Schedule.html">Schedule</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <h1>Active Event Records</h1>
+        <p class="subtitle">This page is for checking and editing the events we already added.</p>
+
+        <div class="dashboard-grid">
+            <div class="event-card">
+                <h3>Alumni Networking Night</h3>
+                <div class="event-meta"><span>📅 Aug 19, 2026</span></div>
+                <button class="btn-primary small-btn" id="editEventBtn">Edit Details</button>
+            </div>
+            <div class="event-card">
+                <h3>Matriculation Art Exhibition</h3>
+                <div class="event-meta"><span>📅 Sept 05, 2026</span></div>
+                <button class="btn-primary small-btn" id="editEventBtn">Edit Details</button>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-box">
+            <button class="close-btn" id="closeModalBtn">&times;</button>
+            <h2>Edit Event Details</h2>
+            <p class="subtitle">Update the information for this event below.</p>
+            <form id="editEventForm">
+                <div class="form-group">
+                    <label for="eventName">Event Name</label>
+                    <input type="text" id="eventName" name="eventName" required>
+                    <label for="eventTime">Event Time</label>
+                    <input type="datetime" id="eventTime" name="eventTime" required>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
