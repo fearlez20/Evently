@@ -7,6 +7,8 @@ const form = document.getElementById('bookingForm');
 const editEventForm = document.getElementById('editEventForm');
 const eventNameInput = document.getElementById('eventName');
 const eventTimeInput = document.getElementById('eventTime');
+const eventVenueInput = document.getElementById('eventVenue');
+const deleteEventBtn = document.getElementById('deleteEventBtn');
 const dashboardGrid = document.querySelector('.dashboard-grid');
 const scheduleList = document.querySelector('.schedule-list');
 
@@ -202,6 +204,10 @@ function openEditEvent(eventId) {
         eventTimeInput.value = eventData.dateTime;
     }
 
+    if (eventVenueInput) {
+        eventVenueInput.value = eventData.venue;
+    }
+
     if (modal) {
         modal.classList.add('active');
     }
@@ -316,9 +322,10 @@ function handleBookingFormSubmit(event) {
 function handleEditEventFormSubmit(event) {
     event.preventDefault();
 
-    if (activeEventId && eventNameInput && eventTimeInput) {
+    if (activeEventId && eventNameInput && eventTimeInput && eventVenueInput) {
         const eventName = eventNameInput.value.trim();
         const eventTime = eventTimeInput.value;
+        const eventVenue = eventVenueInput.value.trim();
 
         const events = getEvents();
         const updatedEvents = [];
@@ -329,7 +336,7 @@ function handleEditEventFormSubmit(event) {
                     id: events[index].id,
                     title: eventName,
                     dateTime: eventTime,
-                    venue: events[index].venue,
+                    venue: eventVenue,
                 });
             } else {
                 updatedEvents.push(events[index]);
@@ -341,6 +348,30 @@ function handleEditEventFormSubmit(event) {
         renderManageEvents();
         renderScheduleEvents();
     }
+
+    closeModal();
+    editEventForm.reset();
+    activeEventId = null;
+}
+
+function handleDeleteEventClick() {
+    if (!activeEventId) {
+        return;
+    }
+
+    const events = getEvents();
+    const remainingEvents = [];
+
+    for (let index = 0; index < events.length; index += 1) {
+        if (events[index].id !== activeEventId) {
+            remainingEvents.push(events[index]);
+        }
+    }
+
+    saveEvents(remainingEvents);
+    renderDashboardEvents();
+    renderManageEvents();
+    renderScheduleEvents();
 
     closeModal();
     editEventForm.reset();
@@ -385,6 +416,10 @@ if (form) {
 
 if (editEventForm) {
     editEventForm.addEventListener('submit', handleEditEventFormSubmit);
+}
+
+if (deleteEventBtn) {
+    deleteEventBtn.addEventListener('click', handleDeleteEventClick);
 }
 
 document.addEventListener('click', handleEditEventButtonClick);
