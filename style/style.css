@@ -93,7 +93,6 @@ h1 {
     font-weight: 600;
     transition: background 0.2s;
 }
-
 .btn-primary:hover {
     background-color: #2563eb;
 }

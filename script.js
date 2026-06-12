@@ -158,16 +158,23 @@ function renderScheduleEvents() {
     }
 
     const events = getSortedEvents();
+    const scheduleBody = document.querySelector('.schedule-body');
+
+    if (!scheduleBody) {
+        return;
+    }
+
     let html = '';
 
     for (let index = 0; index < events.length; index += 1) {
-        html += '<p class="schedule-item">';
-        html += '<strong>' + formatEventTime(events[index].dateTime) + ':</strong> ';
-        html += events[index].title + ' (' + events[index].venue + ')';
-        html += '</p>';
+        html += '<div class="schedule-row">';
+        html += '<span class="schedule-cell">' + events[index].title + '</span>';
+        html += '<span class="schedule-cell">' + events[index].venue + '</span>';
+        html += '<span class="schedule-cell">' + formatEventTime(events[index].dateTime) + '</span>';
+        html += '</div>';
     }
 
-    scheduleList.innerHTML = html;
+    scheduleBody.innerHTML = html;
 }
 
 function openEditEvent(eventId) {
