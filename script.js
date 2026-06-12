@@ -77,7 +77,7 @@ function getEvents() {
 }
 
 function saveEvents(events) {
-    
+    localStorage.setItem(eventStorageKey, JSON.stringify(events));
 }
 
 function getSortedEvents() {
