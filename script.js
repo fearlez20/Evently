@@ -14,30 +14,6 @@ const scheduleList = document.querySelector('.schedule-list');
 
 const eventStorageKey = 'eventlyEvents';
 const defaultEvents = [
-    {
-        id: 'tech-summit-2026',
-        title: 'Tech Summit 2026',
-        dateTime: '2026-06-15T09:00',
-        venue: 'Auditorium',
-    },
-    {
-        id: 'hackathon-2026',
-        title: 'Inter-University Hackathon',
-        dateTime: '2026-07-02T12:00',
-        venue: 'Software Lab',
-    },
-    {
-        id: 'Dinner-night',
-        title: 'Dinner Night',
-        dateTime: '2026-08-19T18:00',
-        venue: 'Auditorium',
-    },
-    {
-        id: 'Art-exhibition',
-        title: 'Art Exhibition',
-        dateTime: '2026-09-05T10:30',
-        venue: 'New Lecture Theater',
-    },
 ];
 
 let activeEventId = null;
