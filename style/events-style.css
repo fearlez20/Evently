@@ -25,7 +25,6 @@ body {
     transition: transform 0.3s ease;
 }
 
-<<<<<<< HEAD
 .main-content {
     margin-left: 260px;
     width: 100%;
@@ -40,8 +39,6 @@ body {
     flex-wrap: wrap;
 }
 
-=======
->>>>>>> e467c88838e3a08aba3e0c18ba557c997d6bfb11
 .logo {
     font-size: 20px;
     font-weight: bold;
@@ -71,17 +68,11 @@ body {
     transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-<<<<<<< HEAD
 .nav-links a:hover, .nav-links a.active {
-=======
-.nav-links a:hover,
-.nav-links a.active {
->>>>>>> e467c88838e3a08aba3e0c18ba557c997d6bfb11
     background-color: #3b82f6;
     color: white;
 }
 
-<<<<<<< HEAD
 h1 {
     font-size: 28px;
     margin-bottom: 10px;
@@ -101,14 +92,27 @@ h1 {
     cursor: pointer;
     font-weight: 600;
     transition: background 0.2s;
+    margin-bottom: 20px;
+}
+
+.btn-secondary {
+    background-color: #c8000a;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.2s;
 }
 
 .btn-primary:hover {
     background-color: #2563eb;
 }
+.btn-secondary:hover {
+    background-color: #a50000;
+}
 
-=======
->>>>>>> e467c88838e3a08aba3e0c18ba557c997d6bfb11
 .menu-toggle {
     display: none;
     background: none;
@@ -119,7 +123,6 @@ h1 {
     margin-bottom: 20px;
 }
 
-<<<<<<< HEAD
 .dashboard-grid {
     display: flex;
     flex-wrap: wrap;
@@ -249,69 +252,6 @@ h1 {
 
 .full-btn {
     width: 100%;
-=======
-.main-content {
-    margin-left: 260px;
-    width: 100%;
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
-
-h1 {
-    font-size: 28px;
-    margin-bottom: 10px;
-}
-
-.subtitle {
-    color: #94a3b8;
-    margin-bottom: 30px;
-}
-
-.schedule-list {
-    width: min(100%, 800px);
-    text-align: left;
-}
-
-.schedule-header,
-.schedule-row {
-    display: grid;
-    grid-template-columns: 2fr 1.4fr 1.4fr;
-    gap: 20px;
-    align-items: center;
-}
-
-.schedule-header {
-    padding: 14px 0;
-    border-bottom: 1px solid #475569;
-    color: #cbd5e1;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    font-size: 12px;
-}
-
-.schedule-body {
-    display: flex;
-    flex-direction: column;
-}
-
-.schedule-row {
-    padding: 14px 0;
-    border-bottom: 1px solid #334155;
-    color: #f8fafc;
-    line-height: 1.5;
-}
-
-.schedule-row:last-child {
-    border-bottom: none;
-}
-
-.schedule-cell {
-    min-width: 0;
->>>>>>> e467c88838e3a08aba3e0c18ba557c997d6bfb11
 }
 
 @media (max-width: 768px) {
@@ -331,21 +271,4 @@ h1 {
     .menu-toggle {
         display: block;
     }
-<<<<<<< HEAD
-=======
-
-    .schedule-list {
-        width: 100%;
-    }
-
-    .schedule-header,
-    .schedule-row {
-        grid-template-columns: 1fr;
-        gap: 6px;
-    }
-
-    .schedule-header {
-        display: none;
-    }
->>>>>>> e467c88838e3a08aba3e0c18ba557c997d6bfb11
 }
