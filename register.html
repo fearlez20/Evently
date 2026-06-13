@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evently - Attendee Registration</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+
+    <button class="menu-toggle" id="menuToggle">☰ Menu</button>
+
+    <nav class="sidebar" id="sidebar">
+        <div class="logo">📅 Evently</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Dashboard</a></li>
+            <li><a href="events.html">Manage Events</a></li>
+            <li><a href="Schedule.html">Schedule</a></li>
+            <li><a href="venues.html">Venues & Halls</a></li>
+            <li><a href="register.html" class="active">Attendee Sign-up</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="form-container-flat">
+            <h1>Join an Event</h1>
+            <p class="subtitle">Register your details below to secure your entry pass or seat allotment.</p>
+
+            <div class="modal-box modal-box-flat">
+                <form id="attendeeForm">
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" placeholder="e.g., John Doe" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="studentEmail">Email Address</label>
+                        <input type="email" id="studentEmail" placeholder="e.g., student@university.edu" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="selectEvent">Select Event</label>
+                        <select id="selectEvent">
+                            <option>Tech Summit 2026</option>
+                            <option>Inter-University Hackathon</option>
+                            <option>Alumni Networking Night</option>
+                            <option>Matriculation Art Exhibition</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="role">Your Role / Department</label>
+                        <input type="text" id="role" placeholder="e.g., Computer Science (Year 1)" required>
+                    </div>
+
+                    <button type="submit" class="btn-primary full-btn">Confirm Registration</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const attForm = document.getElementById('attendeeForm');
+        if (attForm) {
+            attForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Registration submitted successfully! Check your email for your entry pass.');
+                attForm.reset();
+            });
+        }
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

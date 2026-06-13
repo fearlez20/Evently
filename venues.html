@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evently - Venue Resources</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+
+    <button class="menu-toggle" id="menuToggle">☰ Menu</button>
+
+    <nav class="sidebar" id="sidebar">
+        <div class="logo">📅 Evently</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Dashboard</a></li>
+            <li><a href="events.html">Manage Events</a></li>
+            <li><a href="Schedule.html">Schedule</a></li>
+            <li><a href="venues.html" class="active">Venues & Halls</a></li>
+            <li><a href="register.html">Attendee Sign-up</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <h1>Campus Venues & Capacity</h1>
+        <p class="subtitle">Check available locations, seating capacities, and equipment configuration.</p>
+
+        <div class="dashboard-grid">
+            <div class="event-card">
+                <h3>Auditorium Center</h3>
+                <div class="event-meta">
+                    <span>👥 Max Capacity: 500</span>
+                    <span>📍 Main Block</span>
+                </div>
+                <p class="card-text card-text-spacing">Equipped with high-definition projectors, surround sound, and central air conditioning.</p>
+                <button class="btn-primary small-btn">Check Availability</button>
+            </div>
+
+            <div class="event-card">
+                <h3>Engineering Amphitheater</h3>
+                <div class="event-meta">
+                    <span>👥 Max Capacity: 250</span>
+                    <span>📍 West Campus</span>
+                </div>
+                <p class="card-text card-text-spacing">Open-tier seating ideal for public presentations, guest lectures, and panel panels.</p>
+                <button class="btn-primary small-btn">Check Availability</button>
+            </div>
+
+            <div class="event-card">
+                <h3>Conference Room B</h3>
+                <div class="event-meta">
+                    <span>👥 Max Capacity: 50</span>
+                    <span>📍 Admin Building</span>
+                </div>
+                <p class="card-text card-text-spacing">Smart-board integrated room designed for smaller corporate sessions, meetings, or defense trials.</p>
+                <button class="btn-primary small-btn">Check Availability</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
