@@ -93,10 +93,6 @@ h1 {
     font-weight: 600;
     transition: background 0.2s;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> e467c88838e3a08aba3e0c18ba557c997d6bfb11
 .btn-primary:hover {
     background-color: #2563eb;
 }
@@ -242,8 +238,6 @@ h1 {
     width: 100%;
 }
 
-<<<<<<< HEAD
-/* Helper Cleanups for New Page Variations */
 .card-text-spacing {
     margin-bottom: 15px;
 }
@@ -257,8 +251,6 @@ h1 {
     max-width: 100%;
 }
 
-=======
->>>>>>> e467c88838e3a08aba3e0c18ba557c997d6bfb11
 @media (max-width: 768px) {
     .sidebar {
         transform: translateX(-100%);
