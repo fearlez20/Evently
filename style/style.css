@@ -251,6 +251,224 @@ h1 {
     max-width: 100%;
 }
 
+/* ==================== CONTACT PAGE STYLES ==================== */
+
+.contact-header {
+    text-align: center;
+    margin-bottom: 50px;
+    padding-bottom: 40px;
+    border-bottom: 2px solid #334155;
+}
+
+.contact-header h1 {
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #f8fafc;
+}
+
+.contact-subtitle {
+    font-size: 16px;
+    color: #cbd5e1;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.contact-form-section {
+    flex: 1;
+}
+
+.form-card {
+    background-color: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 16px;
+    padding: 40px;
+    transition: all 0.3s ease;
+}
+
+.form-card:hover {
+    border-color: #3b82f6;
+    box-shadow: 0 8px 32px rgba(59, 130, 246, 0.1);
+}
+
+.form-card h2 {
+    font-size: 24px;
+    margin-bottom: 30px;
+    color: #f8fafc;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.contact-form .form-group {
+    margin-bottom: 24px;
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 10px;
+    color: #cbd5e1;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+    width: 100%;
+    padding: 12px 16px;
+    background-color: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    color: #f8fafc;
+    font-size: 15px;
+    font-family: inherit;
+    transition: all 0.3s ease;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: #64748b;
+}
+
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+    border-color: #3b82f6;
+    background-color: #1e293b;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.contact-form textarea {
+    resize: vertical;
+    min-height: 140px;
+    line-height: 1.5;
+}
+
+.btn-submit {
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+    padding: 14px 32px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.btn-submit:hover {
+    background-color: #2563eb;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(59, 130, 246, 0.3);
+}
+
+.btn-submit:active {
+    transform: translateY(0);
+}
+
+.contact-info-section {
+    flex: 1;
+}
+
+.contact-info-section h2 {
+    font-size: 24px;
+    margin-bottom: 30px;
+    color: #f8fafc;
+}
+
+.info-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.info-card {
+    background-color: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 16px;
+    padding: 28px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.info-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.info-card:hover {
+    border-color: #3b82f6;
+    transform: translateX(5px);
+    box-shadow: 0 8px 24px rgba(59, 130, 246, 0.15);
+}
+
+.info-card:hover::before {
+    transform: scaleX(1);
+}
+
+.info-icon {
+    font-size: 32px;
+    margin-bottom: 15px;
+    display: inline-block;
+}
+
+.info-card h3 {
+    font-size: 20px;
+    color: #f8fafc;
+    margin-bottom: 8px;
+}
+
+.info-label {
+    color: #94a3b8;
+    font-size: 14px;
+    margin-bottom: 16px;
+}
+
+.info-details {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.info-details a,
+.info-details p {
+    color: #cbd5e1;
+    font-size: 15px;
+    line-height: 1.6;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.info-details a:hover {
+    color: #3b82f6;
+}
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+
 @media (max-width: 768px) {
     .sidebar {
         transform: translateX(-100%);
@@ -267,5 +485,27 @@ h1 {
 
     .menu-toggle {
         display: block;
+    }
+
+    .contact-header {
+        margin-bottom: 40px;
+        padding-bottom: 30px;
+    }
+
+    .contact-header h1 {
+        font-size: 32px;
+    }
+
+    .contact-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .form-card {
+        padding: 30px 24px;
+    }
+
+    .contact-info-section h2 {
+        margin-top: 30px;
     }
 }
