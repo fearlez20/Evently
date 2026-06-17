@@ -3,9 +3,6 @@ const openBtn = document.getElementById('openModalBtn');
 const closeBtn = document.getElementById('closeModalBtn');
 const menuBtn = document.getElementById('menuToggle');
 const sideBar = document.getElementById('sidebar');
-const form = document.getElementById('bookingForm');
-
-function openModal() {
 const bookingForm = document.getElementById('bookingForm');
 const editEventForm = document.getElementById('editEventForm');
 const eventTitleInput = document.getElementById('eventTitle');
@@ -66,22 +63,12 @@ function showModal() {
     }
 }
 
-<<<<<<< HEAD
-function closeModal() {
-=======
 function hideModal() {
->>>>>>> e467c88838e3a08aba3e0c18ba557c997d6bfb11
     if (modal) {
         modal.classList.remove('active');
     }
 }
 
-if (openBtn) {
-    openBtn.addEventListener('click', openModal);
-}
-
-if (closeBtn) {
-    closeBtn.addEventListener('click', closeModal);
 function renderCards(events, showEditButton) {
     return events.map(function (event) {
         return '<div class="event-card" data-event-id="' + event.id + '">' +
@@ -196,7 +183,6 @@ if (closeBtn) {
 if (modal) {
     window.addEventListener('click', function (event) {
         if (event.target === modal) {
-            closeModal();
             hideModal();
         }
     });
@@ -208,14 +194,6 @@ if (menuBtn && sideBar) {
     });
 }
 
-if (form) {
-    form.addEventListener('submit', function (event) {
-        event.preventDefault();
-        alert('Form submitted successfully!');
-        closeModal();
-        form.reset();
-    });
-}
 if (bookingForm) {
     bookingForm.addEventListener('submit', function (event) {
         event.preventDefault();
