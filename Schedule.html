@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evently - Schedule</title>
+    <link rel="stylesheet" href="style/Schedule-style.css">
+</head>
+<body>
+
+    <button class="menu-toggle" id="menuToggle">☰ Menu</button>
+
+    <nav class="sidebar" id="sidebar">
+        <div class="logo">📅 Evently</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Dashboard</a></li>
+            <li><a href="events.html">Manage Events</a></li>
+            <li><a href="Schedule.html" class="active">Schedule</a></li>
+            <li><a href="venues.html">Venues & Halls</a></li>
+            <li><a href="register.html">Attendee Sign-up</a></li>
+            <li><a href="workshops.html">Workshops</a></li>
+            <li><a href="student-week.html">Student Week</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <h1>Timeline Tracking</h1>
+        <p class="subtitle">A simple schedule view for the semester plan.</p>
+
+        <div class="schedule-list" id="scheduleList">
+            <div class="schedule-header">
+                <span>Event</span>
+                <span>Location</span>
+                <span>Time</span>
+            </div>
+            <div class="schedule-body">
+                <p class="schedule-item">Loading events...</p>
+            </div>
+        </div>
+    </main>
+
+    <script src="javascript/script-main.js"></script>
+</body>
+</html>

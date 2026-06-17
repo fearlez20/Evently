@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evently - Manage Events</title>
+    <link rel="stylesheet" href="style/events-style.css">
+</head>
+<body>
+
+    <button class="menu-toggle" id="menuToggle">☰ Menu</button>
+
+    <nav class="sidebar" id="sidebar">
+        <div class="logo">📅 Evently</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Dashboard</a></li>
+            <li><a href="events.html" class="active">Manage Events</a></li>
+            <li><a href="Schedule.html">Schedule</a></li>
+            <li><a href="venues.html">Venues & Halls</a></li>
+            <li><a href="register.html">Attendee Sign-up</a></li>
+            <li><a href="workshops.html">Workshops</a></li>
+            <li><a href="student-week.html">Student Week</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <h1>Active Event Records</h1>
+        <p class="subtitle">This page is for checking and editing the events we already added.</p>
+
+        <div class="dashboard-grid"></div>
+    </main>
+
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-box">
+            <button class="close-btn" id="closeModalBtn">&times;</button>
+            <h2>Edit Event Details</h2>
+            <p class="subtitle">Update the information for this event below.</p>
+            <form id="editEventForm">
+                <div class="form-group">
+                    <label for="eventName">Event Name</label>
+                    <input type="text" id="eventName" name="eventName" required>
+                    <label for="eventTime">Event Time</label>
+                    <input type="datetime-local" id="eventTime" name="eventTime" required>
+                    <label for="eventVenue">Event Venue</label>
+                    <input type="text" id="eventVenue" name="eventVenue" required>
+                </div>
+                <button type="submit" class="btn-primary full-btn">Save</button>
+                <button type="button" class="btn-secondary full-btn" id="deleteEventBtn">Delete Event</button>
+            </form>
+        </div>
+    </div>
+    <script src="javascript/script-main.js"></script>
+</body>
+</html>

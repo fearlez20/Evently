@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Dashboard - Overview</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+
+    <button class="menu-toggle" id="menuToggle">☰ Menu</button>
+
+    <nav class="sidebar" id="sidebar">
+        <div class="logo">📅 Evently</div>
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Dashboard</a></li>
+            <li><a href="events.html">Manage Events</a></li>
+            <li><a href="Schedule.html">Schedule</a></li>
+            <li><a href="venues.html">Venues & Halls</a></li>
+            <li><a href="register.html">Attendee Sign-up</a></li>
+            <li><a href="workshops.html">Workshops</a></li>
+            <li><a href="student-week.html">Student Week</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+        </ul>
+    </nav>
+ 
+    <main class="main-content">
+        <header class="page-header">
+            <div>
+                <h1>My Event Dashboard</h1>
+                <p class="subtitle">A simple overview of what is going on right now.</p>
+            </div>
+            <button class="btn-primary" id="openModalBtn">+ Create Event</button>
+        </header>
+
+        <h2>Upcoming Events</h2>
+        <div class="dashboard-grid">
+            <div class="event-card">
+                <h3>Tech Summit 2026</h3>
+                <div class="event-meta">
+                    <span>📅 June 15, 2026</span>
+                    <span>📍 Auditorium</span>
+                </div>
+                <p class="card-text">Annual gathering for software engineering students and industry leads.</p>
+            </div>
+
+            <div class="event-card">
+                <h3>Inter-University Hackathon</h3>
+                <div class="event-meta">
+                    <span>📅 July 02, 2026</span>
+                    <span>📍 Software Lab</span>
+                </div>
+                <p class="card-text">48 hours of coding, design, and way too many coffee breaks.</p>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-box">
+            <button class="close-btn" id="closeModalBtn">&times;</button>
+            <h2>Create New Event</h2>
+            <p class="subtitle">Fill out the details below to add a new event.</p>
+            
+            <form id="bookingForm">
+                <div class="form-group">
+                    <label for="eventTitle">Event Title</label>
+                    <input type="text" id="eventTitle" placeholder="e.g., UI/UX design bootcamp" required>
+                </div>
+                <div class="form-group">
+                    <label for="eventDate">Date and Time</label>
+                    <input type="datetime-local" id="eventDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="venue">Venue Hall</label>
+                    <select id="venue">
+                        <option>Auditorium</option>
+                        <option>Multipurpose hall</option>
+                        <option>Software Lab</option>
+                        <option>New Lecture Theater</option>
+                        <option>Auditorium Park</option>
+                        <option>Law faculty</option>
+                        <option>MED LAB</option>
+                        <option>PARK</option>
+                        <option>Block A</option>
+                        <option>Block B</option>
+                        <option>Block C</option>
+                        <option>Block D</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-primary full-btn">Save Event</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="javascript/script-main.js"></script>
+</body>
+</html>
